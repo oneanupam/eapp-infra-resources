@@ -1,5 +1,4 @@
 # Variable Declaration - Project, Region, Zone, Labels
-
 variable "project_id" {
   type        = string
   description = "The project ID to host the resources"
@@ -24,14 +23,7 @@ variable "resource_labels" {
   }
 }
 
-variable "terraform_service_account" {
-  type        = string
-  description = "Terraform service account to execute the terraform code."
-  # Make sure to give "roles/iam.serviceAccountTokenCreator" role to an identity (who will trigger the terraform code) on this service account for the impersonation to succeed.
-}
-
 # Variable Declaration - IaaS (VPC Network, SubNetwork, Cloud VPN, GCE)
-
 variable "vpc_name" {
   type        = list(string)
   description = "List of the names of the VPC"
