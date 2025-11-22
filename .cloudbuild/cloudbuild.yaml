@@ -1,49 +1,48 @@
 # The image used in the cloud build steps is the official terraform image released by HashiCorp, Inc. over Dokcer Hub Registry.
-
 steps:
-- name: 'hashicorp/terraform:1.3.6'
-  id: 'Init'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - |
-      echo "*** Branch Name: $BRANCH_NAME ***"
-      echo "*** Terraform Initialization ***"
-      cd terraform
-      terraform init
+  - name: "hashicorp/terraform:1.14.0"
+    id: "Init"
+    entrypoint: "sh"
+    args:
+      - "-c"
+      - |
+        echo "*** Branch Name: $BRANCH_NAME ***"
+        echo "*** Terraform Initialization ***"
+        cd terraform
+        terraform init
 
-- name: 'hashicorp/terraform:1.3.6'
-  id: 'Build'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-      echo "*** Terraform Plan ***"
-      cd terraform
-      terraform plan
+  - name: "hashicorp/terraform:1.14.0"
+    id: "Build"
+    entrypoint: "sh"
+    args:
+      - "-c"
+      - |
+        echo "*** Terraform Plan ***"
+        cd terraform
+        terraform plan
 
-- name: 'hashicorp/terraform:1.3.6'
-  id: 'Code Quality'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - | 
-      echo "*** Terraform format and Validate ***"
-      cd terraform
-      terraform fmt && terraform validate
+  - name: "hashicorp/terraform:1.3.6"
+    id: "Code Quality"
+    entrypoint: "sh"
+    args:
+      - "-c"
+      - |
+        echo "*** Terraform format and Validate ***"
+        cd terraform
+        terraform fmt && terraform validate
 
-- name: 'hashicorp/terraform:1.3.6'
-  id: 'Apply'
-  entrypoint: 'sh'
-  args: 
-  - '-c'
-  - |
-      echo "*** Terraform Apply ***"
-      cd terraform
-      terraform apply -auto-approve
+  - name: "hashicorp/terraform:1.14.0"
+    id: "Apply"
+    entrypoint: "sh"
+    args:
+      - "-c"
+      - |
+        echo "*** Terraform Apply ***"
+        cd terraform
+        terraform apply -auto-approve
 
-# If user specified service account is used to run the build trigger, the build must either - 
+# If user specified service account is used to run the build trigger, the build must either -
 # (a) specify GCS_ONLY with gcs bucket url (b) use CLOUD_LOGGING_ONLY logging option, or (c) use the NONE logging option
-logsBucket: 'gs://mgcp-tf-cloudbuild-logs'
+logsBucket: "gs://mgcp-tf-cloudbuild-logs"
 options:
   logging: GCS_ONLY
