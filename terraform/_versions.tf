@@ -1,15 +1,15 @@
 # Terraform block to configure Terraform and Provider Version
 terraform {
-  required_version = ">= 1.3.6"
+  required_version = ">= 1.14.0"
 
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "~> 4.52.0"
+      version = "~> 7.12.0"
     }
     google-beta = {
       source  = "hashicorp/google-beta"
-      version = "~> 4.52.0"
+      version = "~> 7.12.0"
     }
     random = {
       source  = "hashicorp/random"
