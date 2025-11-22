@@ -73,6 +73,10 @@ jobs:
         needs: tf-plan
         if: github.ref == 'refs/heads/master' && github.event_name == 'push'
         runs-on: ubuntu-latest
+        permissions:
+            contents: write
+            id-token: write
+            pull-requests: write
         steps:
             - uses: actions/checkout@v4
 
