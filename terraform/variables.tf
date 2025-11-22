@@ -14,15 +14,6 @@ variable "resource_zone" {
   description = "The zone to host the resources"
 }
 
-variable "resource_labels" {
-  type        = map(string)
-  description = "Map of labels to be associated with resources"
-  default = {
-    "env"     = "dev"
-    "project" = "foundation"
-  }
-}
-
 # Variable Declaration - IaaS (VPC Network, SubNetwork, Cloud VPN, GCE)
 variable "vpc_name" {
   type        = list(string)
